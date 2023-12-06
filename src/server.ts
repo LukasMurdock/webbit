@@ -2,6 +2,8 @@
 
 console.log("Provide sys access to attempt to find local IP address.");
 
+console.log("Main", import.meta.main);
+
 const networkInterfacePermission = Deno.permissions.requestSync({
   name: "sys",
 });
