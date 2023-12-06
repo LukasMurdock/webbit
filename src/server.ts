@@ -1,5 +1,7 @@
 // deno run --allow-net=0.0.0.0:80 --allow-read=./src/script.js src/server.ts
 
+console.log("Provide sys access to attempt to find local IP address.");
+
 const networkInterfacePermission = Deno.permissions.requestSync({
   name: "sys",
 });
@@ -14,13 +16,13 @@ if (networkInterfacePermission.state === "granted") {
   );
 
   if (!onboardEthernet || !onboardEthernet.cidr) {
-    throw new Error("No IPv4 en0 network interface with CIDR found");
+    console.log("No IPv4 en0 network interface with CIDR found");
+  } else {
+    console.log(
+      "Available on network at:",
+      "http://" + onboardEthernet.address + ":" + port,
+    );
   }
-
-  console.log(
-    "Available on network at:",
-    "http://" + onboardEthernet.address + ":" + port,
-  );
 
   Deno.permissions.revoke({ name: "sys" });
 }
