@@ -1,7 +1,5 @@
 // deno run --allow-net=0.0.0.0:80 --allow-read=./src/script.js src/server.ts
 
-// import "./src/script.js"
-
 const networkInterfacePermission = Deno.permissions.requestSync({
   name: "sys",
 });
