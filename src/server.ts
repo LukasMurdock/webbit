@@ -2,8 +2,6 @@
 
 console.log("Provide sys access to attempt to find local IP address.");
 
-console.log("Main", import.meta.main);
-
 const networkInterfacePermission = Deno.permissions.requestSync({
   name: "sys",
 });
@@ -41,7 +39,7 @@ function broadcast(msg: string, sender?: WebSocket) {
 }
 
 let textBlob = new Blob(["Hello world!"], { type: "text/plain" });
-// 192.168.1.62
+
 async function handler(request: Request): Promise<Response> {
   const url = new URL(request.url);
   if (url.pathname === "/") {
@@ -142,3 +140,9 @@ async function handler(request: Request): Promise<Response> {
 
 console.log(`HTTP server running. Access it at: http://localhost:${port}/`);
 Deno.serve({ port }, handler);
+
+// handle SIGINT aka ctrl-c
+Deno.addSignalListener("SIGINT", () => {
+  console.log("interrupted!");
+  Deno.exit();
+});
