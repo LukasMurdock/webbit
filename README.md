@@ -24,7 +24,7 @@ View
 ### Run remotely
 
 ```
-deno run --allow-net=0.0.0.0:80 src/server.ts https://raw.githubusercontent.com/LukasMurdock/webbit/main/src/server.ts
+deno run --allow-net=0.0.0.0:80 https://raw.githubusercontent.com/LukasMurdock/webbit/main/src/server.ts
 ```
 
 When run remotely, file system access is not needed (although it will be
